@@ -48,4 +48,12 @@ eliminar){
     listaPersonas.remove(eliminar);
 
 }
+public ArrayList<Registro> registrado() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'registrado'");
+}
+public void registro(Registro registrate) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'registro'");
+}
 }
