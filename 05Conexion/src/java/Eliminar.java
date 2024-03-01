@@ -1,13 +1,8 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-
-/**
- *
- * @author Telle
- */
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -20,37 +15,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ *
+ * @author Telle
+ */
 
-public class Registro extends HttpServlet {
+public class Eliminar extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     * 
-     * Vamos a conectar con una base de datos
-     * para poder hacer la conexion es necesario contar con 3 tipos de objeto
-     */
-    private Connection con;
-    //es para establecer el objeto de conexion
+    private connection con;
     private Statement set;
     //el objeto statement es para poder definir las sentencias sql
     // por ejemplo crear una tabla, registrar un dato actualizar un dato, modificar la estructura de un atributo
     private ResultSet rs;
     //este objeto es exclusivo de consultas
-    
-    public void init(ServletConfig scg) throws ServletException{
+       public void init(ServletConfig scg) throws ServletException{
         //sirve para configurar el servicio de la conexion con la bd
         String url = "jdbc:mysql:3306//localhost/registroalumnos";
                     //controlador:motorbd:puerto//IP/nombrebd
         String username = "root";
         String password = "n0m3l0";
-        
-        try{
+    
+      try{
             url = "jdbc:mysql://localhost/registroalumnos";
             //vamos a internar conectarnos a la BD
             Class.forName("com.mysql.jdbc.Driver");
@@ -68,55 +53,43 @@ public class Registro extends HttpServlet {
     }
     
     
+    
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            //obtener los parametros del formulario
-            String nombre, appat, apmat;
-            int edad;
-            
-            nombre = request.getParameter("nombre");
-            appat = request.getParameter("appat");
-            apmat = request.getParameter("apmat");
-            
-            edad = Integer.parseInt(
-                    request.getParameter("edad"));
-            
-            System.out.println(nombre);
-            System.out.println(appat);
-            System.out.println(apmat);
-            System.out.println(edad);
-            
-            try{
-                
-                String q = "insert into alumno(nom_alu, appat_alu,"
-                        + "apmat_alu, edad_alu) values ( '"+nombre+"', "
-                        + "'"+appat+"', '"+apmat+"', "+edad+" )";
-                
-                //se debe de preparar la sentencia
-                set.executeUpdate(q);
-                System.out.println("Registro exitoso");
-                out.println("<h1>Alumno registrado con exito</h1>");
-            
-            }catch(Exception e){
-                System.out.println("Registro no exitoso");
-                out.println("<h1>El Alumno no se pudo registrar</h1>");
-                System.out.println(e.getMessage());
-                System.out.println(e.getStackTrace());
-            }
-            
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Registro</title>");            
+            out.println("<title>Servlet Eliminar</title>");            
             out.println("</head>");
             out.println("<body>");
-         
-            out.println("<a href='index.html' >Regresar al Menu Principal</a>");
+            
+              try{
+                int bol;
+                bol = Integer.parseInt(
+                        request.getParameter("boletaeliminada"));
+                System.out.println(bol);
+                String q = "delete from alumno where idAlumno="+bol;
+                
+                set.executeUpdate(q);
+                out.println("<h1>Registro Eliminado</h1>");
+                System.out.println("Dato eliminado");
+            }catch(Exception e){
+                System.out.println("Error " + e.getMessage());
+                System.out.println("No se elimino");
+                out.println("<h1>Ocurrio un error</h1>");
+            }
+            
+            
+            
+            
+            
+            out.println("<h1>Servlet Eliminar at " + request.getContextPath() + "</h1>");
             out.println("</body>");
+            
             out.println("</html>");
         }
     }

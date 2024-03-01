@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Telle
  */
+
 public class Consultar extends HttpServlet {
 
     private Connection con;
@@ -61,7 +62,7 @@ public class Consultar extends HttpServlet {
             out.println("<title>Servlet Consultar</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Listadi de alumnos registrados</h1>"
+            out.println("<h1>Listado de alumnos registrados</h1>"
                     + "<br>"
                     + "<table border = '2'>"
                     + "<tr>"

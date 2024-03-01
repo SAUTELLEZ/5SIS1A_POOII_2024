@@ -1,23 +1,25 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-/**
- *
- * @author Telle
- */
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.DriverManager;
 import java.sql.*;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Consultar extends HttpServlet {
+/**
+ *
+ * @author Telle
+ */
+
+public class Actualizar extends HttpServlet {
 
     private Connection con;
     //es para establecer el objeto de conexion
@@ -50,8 +52,6 @@ public class Consultar extends HttpServlet {
         
     }
     
-    
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -60,10 +60,10 @@ public class Consultar extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Consultar</title>");            
+            out.println("<title>Servlet Actualizar</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Listadi de alumnos registrados</h1>"
+            out.println("<h1>Listado de alumnos actualizados</h1>"
                     + "<br>"
                     + "<table border = '2'>"
                     + "<tr>"
@@ -71,7 +71,8 @@ public class Consultar extends HttpServlet {
                     + "<th>Nombre Completo</th>"
                     + "<th>Edad</th>"
                     + "</tr>");
-            try{
+            
+             try{
                 int id, edad;
                 String nom, appat, apmat;
                 
@@ -103,8 +104,10 @@ public class Consultar extends HttpServlet {
              out.println("<a href='index.html' >Regresar al Menu Principal</a>");
             out.println("</body>");
             out.println("</html>");
-        }
+           
+           
     }
+      }  
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
