@@ -22,7 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Eliminar extends HttpServlet {
 
-    private connection con;
+  private Connection con;
+    //es para establecer el objeto de conexion
     private Statement set;
     //el objeto statement es para poder definir las sentencias sql
     // por ejemplo crear una tabla, registrar un dato actualizar un dato, modificar la estructura de un atributo
@@ -34,8 +35,8 @@ public class Eliminar extends HttpServlet {
                     //controlador:motorbd:puerto//IP/nombrebd
         String username = "root";
         String password = "n0m3l0";
-    
-      try{
+        
+        try{
             url = "jdbc:mysql://localhost/registroalumnos";
             //vamos a internar conectarnos a la BD
             Class.forName("com.mysql.jdbc.Driver");
@@ -51,10 +52,6 @@ public class Eliminar extends HttpServlet {
         }
         
     }
-    
-    
-    
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -67,7 +64,7 @@ public class Eliminar extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             
-              try{
+            try{
                 int bol;
                 bol = Integer.parseInt(
                         request.getParameter("boletaeliminada"));
@@ -83,16 +80,50 @@ public class Eliminar extends HttpServlet {
                 out.println("<h1>Ocurrio un error</h1>");
             }
             
-            
-            
-            
-            
-            out.println("<h1>Servlet Eliminar at " + request.getContextPath() + "</h1>");
+            out.println("<a href='index.html' >Regresar al Menu Principal</a>");
             out.println("</body>");
-            
             out.println("</html>");
         }
     }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
